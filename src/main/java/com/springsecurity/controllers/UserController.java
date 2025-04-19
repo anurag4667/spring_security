@@ -25,12 +25,12 @@ public class UserController {
 	
 	@GetMapping("/")
 	public List<User> getAllUser(){
-		return this.userservice.getAllUser();
+		return this.userservice.findAll();
 	}
 	
 	@GetMapping("/{username}")
 	public User getUser(@PathVariable("username")String username) {
-		return this.userservice.getUser(username);
+		return (User)this.userservice.findByUsername(username);
 	}
 	
 	
@@ -42,6 +42,6 @@ public class UserController {
 	
 	@PostMapping("/")
 	public User Add(@RequestBody User user) {
-		return this.userservice.addUser(user);
+		return this.userservice.save(user);
 	}
 }
